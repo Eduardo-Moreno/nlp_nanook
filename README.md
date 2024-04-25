@@ -7,7 +7,7 @@ Sección referente a las técnicas de Procesamiento de Lenguaje Natural (**NLP**
 ## Organización
 **Es imperativo respetar las convenciones de esta estructura de folders** para facilitar el seguimiento de proyectos.
 
-
+```
 ├── LICENSE            
 ├── README.md          <- The top-level README for developers using this project.
 ├── data
@@ -32,3 +32,4 @@ Sección referente a las técnicas de Procesamiento de Lenguaje Natural (**NLP**
 │   │                     `01-emo-preprocess-data`.
 │
 └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
+```
