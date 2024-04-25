@@ -2,7 +2,7 @@
 Análisis de imágenes históricas en campañas, medios y comunicación oficial relacionada con la concientización y difusión de hitos sobre el cambio climático en los últimos 10 años, tanto en contenido como en viralidad y reacciones.
 
 ## Description
-Sección referente a las técnicas de Procesamiento de Lenguaje Natural (**NLP** por sus siglas en inglés *Natural Language Processing*) en el [proyecto](https://gitlab.com/datos-algoritmos-sociedad-itam/nanook).
+Sección referente a las técnicas de Procesamiento de Lenguaje Natural (**NLP** por sus siglas en inglés *Natural Language Processing*) del proyecto. La liga al repositorio oficial es la siguiente: [Nanook](https://gitlab.com/datos-algoritmos-sociedad-itam/nanook).
 
 ## Organización
 **Es imperativo respetar las convenciones de esta estructura de folders** para facilitar el seguimiento de proyectos.
