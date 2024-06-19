@@ -128,7 +128,8 @@ def remove_stop_words(text, stop_words):
     """
 
     words = text.split()
-    filtered_words = [word for word in words if word.lower() not in stop_words]
+    filtered_words = [word.strip() for word in words if word.lower() not in stop_words]
+    #filtered_words = [word.strip for word in words if word.lower() not in stop_words]
     return ' '.join(filtered_words)
 
 def remove_stop_words_from_dataframe(df, columns, stop_words_file):
