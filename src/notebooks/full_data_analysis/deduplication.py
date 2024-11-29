@@ -30,31 +30,23 @@ def prefilter_messages(messages):
 def process_message_group(args):
     group_indices, messages, similarity_threshold = args
     indices_to_drop = set()
-    
-    group_indices = list(group_indices)
-    for i in range(len(group_indices)):
-        idx = group_indices[i]
-        if pd.isna(messages[idx]) or messages[idx].strip() == '':
+
+    group_messages = [messages[idx] for idx in group_indices if pd.notna(messages[idx]) and messages[idx].strip()]
+    group_indices_filtered = [idx for idx in group_indices if pd.notna(messages[idx]) and messages[idx].strip()]
+
+    similarities = process.cdist(group_messages, group_messages, scorer=fuzz.ratio, workers=-1)
+
+    for i in range(len(group_messages)):
+        if group_indices_filtered[i] in indices_to_drop:
             continue
-            
-        current_message = messages[idx]
-        
-        for j in range(i + 1, len(group_indices)):
-            compare_idx = group_indices[j]
-            compare_message = messages[compare_idx]
-            
-            if pd.isna(compare_message) or compare_message.strip() == '':
-                continue
-                
-            similarity = fuzz.ratio(current_message, compare_message)
-            
-            if similarity >= similarity_threshold:
-                if len(current_message) >= len(compare_message):
-                    indices_to_drop.add(idx)
-                    break
+        for j in range(i + 1, len(group_messages)):
+            if similarities[i][j] >= similarity_threshold:
+                idx_j = group_indices_filtered[j]
+                if len(group_messages[i]) >= len(group_messages[j]):
+                    indices_to_drop.add(idx_j)
                 else:
-                    indices_to_drop.add(compare_idx)
-    
+                    indices_to_drop.add(group_indices_filtered[i])
+                    break
     return indices_to_drop
 
 def remove_similar_messages_parallel(df, similarity_threshold=95, n_processes=None):
